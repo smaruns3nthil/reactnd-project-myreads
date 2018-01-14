@@ -1,4 +1,5 @@
 import  React, { Component } from 'react'
+import  { Link } from 'react-router-dom'
 
 class MainPage extends Component{
 	render(){
@@ -159,7 +160,10 @@ class MainPage extends Component{
               </div>
             </div>
             <div className="open-search">
-              <a onClick={() => this.props.onCli()}>Add a book</a>
+              <Link 
+                to ="/searchpage"
+                //onClick={() => this.props.onCli()}
+              >Add a book</Link>
             </div>
           </div>
 
