@@ -14,14 +14,26 @@ class BooksApp extends React.Component {
      */
     showSearchPage: false
   }
+  
+  handleChange = () => {
+    this.setState({ showSearchPage: true })
+  }
+
+    handleChange2 = () => {
+    this.setState({ showSearchPage: false })
+  }
 
   render() {
     return (
       <div className="app">
         {this.state.showSearchPage ? (
-          <SearchPage/>
+          <SearchPage
+            onCli2 = {this.handleChange2}
+          />
         ) : (
-          <MainPage/>
+          <MainPage
+            onCli = {this.handleChange}
+          />
         )}
       </div>
     )
