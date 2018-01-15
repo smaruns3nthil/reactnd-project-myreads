@@ -5,6 +5,10 @@ import ListBooks from './ListBooks'
 
 class MainPage extends Component{
 
+  // remove = (book,e) => {
+  //   console.log(e.target.value)
+  // }
+
 
 	render(){
     const { books } = this.props
@@ -25,21 +29,27 @@ class MainPage extends Component{
                   <h2 className="bookshelf-title">Currently Reading</h2>
                   <div className="bookshelf-books">
                     <ListBooks
-                    books={currentlyReading}/>
+                    books={currentlyReading}
+                    onValueChange={(book,e) => this.props.onValueChange(book,e)}
+                    />
                   </div>
                 </div>
                 <div className="bookshelf">
                   <h2 className="bookshelf-title">Want to Read</h2>
                   <div className="bookshelf-books">
                     <ListBooks
-                    books={wantToRead}/>
+                    books={wantToRead}
+                    onValueChange={(book,e) => this.props.onValueChange(book,e)}
+                    />
                   </div>
                 </div>
                 <div className="bookshelf">
                   <h2 className="bookshelf-title">Read</h2>
                   <div className="bookshelf-books">
                     <ListBooks
-                    books={read}/>
+                    books={read}
+                    onValueChange={(book,e) => this.props.onValueChange(book,e)}
+                    />
                   </div>
                 </div>
               </div>
