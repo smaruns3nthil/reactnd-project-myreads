@@ -3,18 +3,20 @@ import  { Link } from 'react-router-dom'
 import ListBooks from './ListBooks'
 
 
-
 class SearchPage extends Component{
 
 	state = {
-	    query: ''
-	  }
+    query: ''
+  }
+
+  	componentDidMount(){
+  		this.props.onCli2()
+  	}
 
 	updateQuery = (query) => {
     this.setState({ query: query.trim() })
     // console.log(this.state.query.length, query)
 		this.props.onSearch2(query)
-	
 	
     
     
@@ -26,7 +28,7 @@ class SearchPage extends Component{
   	
 
 	render(){
-		 const { query } = this.state
+		 const  query  = this.state.query
 
 		  // console.log('Props',this.props)
 		 // console.log('State',this.state)
@@ -41,7 +43,7 @@ class SearchPage extends Component{
 
               	
               	className="close-search" 
-              	//onClick={() => this.props.onCli2() }
+              	// onClick={() => this.props.onCli2() }
               	>Close</Link>
               <div className="search-books-input-wrapper">
                 <input 
@@ -49,7 +51,7 @@ class SearchPage extends Component{
                 placeholder="Search by title or author" 
                 value={query}
             	onChange={(e) => this.updateQuery(e.target.value)} />
-              {JSON.stringify(this.state)}
+             
               </div>
 
             </div>
@@ -66,7 +68,7 @@ class SearchPage extends Component{
 	                          <div className="book-top">
 	                            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})` }}></div>
 	                            <div className="book-shelf-changer">
-	                              <select value={'None'} >
+	                              <select value={book.shelf} >
 	                                <option value="none" disabled>Move to...</option>
 	                                <option value="currentlyReading">Currently Reading</option>
 	                                <option value="wantToRead">Want to Read</option>
@@ -76,7 +78,7 @@ class SearchPage extends Component{
 	                            </div>
 	                          </div>
 	                          <div className="book-title">{book.title}</div>
-	                          <div className="book-authors">{book.authors[0]}
+	                          <div className="book-authors">{book.authors}
 	                          </div>
 	                        </div>
 	                      </li>

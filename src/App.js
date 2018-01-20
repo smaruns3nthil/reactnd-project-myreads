@@ -40,43 +40,62 @@ class BooksApp extends React.Component {
 
   }
 
-  onSearch = (query) => {
-    BooksAPI.search(query)
-    .then(output => {
-      this.setState({SearchBooks:output})
-      console.log(query)
-      // console.log(this.state.SearchBooks)
+  // onSearch = (query) => {
+  // 	let q='bio'
 
-    })
-    .catch(output => {
-      this.setState({SearchBooks:[]})
-      // console.log(output)
-    })
-  }
+  //   BooksAPI.search(q)
+  //   .then(output => {
+  //     this.setState({SearchBooks:output})
+  //     console.log(query)
+  //     // console.log(this.state.SearchBooks)
+
+  //   })
+  //   .catch(output => {
+  //     this.setState({SearchBooks:[]})
+  //     console.log('no Output')
+  //     // console.log(output)
+  //   })
+  // }
 
 onSearch2 = (query) => {
         // console.log(query,query.length)
-
+        
         if(query.length == 0)
         {
+
           this.setState({SearchBooks:[]})
+          
         }
         else {
-
+// console.log(query)
        BooksAPI.search(query)
-    .then(output => {
-      this.setState({SearchBooks:output})
-      // console.log(this.state.SearchBooks)
+    .then((SearchBooks) => {
+    	// console.log(SearchBooks,'test')
+      this.setState({SearchBooks: SearchBooks},
+        // ()=>{console.log(this.state.SearchBooks,'test2')}
+        )
+      // console.log(this.state.SearchBooks,'hello')
 
     })
     .catch(output => {
       this.setState({SearchBooks:[]})
       // console.log(output)
+      // console.log(query)
     }) 
         }
 
 
   }
+
+
+
+    onCli2 = () =>{
+      // console.log('resetting')
+      this.setState({SearchBooks:[]})
+    }
+
+
+
 
   render() {
     return (
@@ -84,6 +103,7 @@ onSearch2 = (query) => {
       <div className="app">
         
         <Route exact path="/" render={() => (
+
             <MainPage
             books={this.state.Books}
             onValueChange={this.onValueChange}        
@@ -92,8 +112,10 @@ onSearch2 = (query) => {
         <Route path="/search"  render={() => (
             <SearchPage
             searchBooks={this.state.SearchBooks}
-            onSearch={this.onSearch}
+            // onSearch={this.onSearch}
             onSearch2={this.onSearch2} 
+            onCli2={this.onCli2}
+
             />
           )}/> 
       </div>
