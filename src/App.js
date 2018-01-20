@@ -9,6 +9,7 @@ class BooksApp extends React.Component {
  
    state = {
     Books: [],
+    SearchBooks:[],
   }
   
   componentDidMount() {
@@ -36,8 +37,46 @@ class BooksApp extends React.Component {
       this.setState({Books:output})
       // console.log(output)
     })
+
   }
 
+  onSearch = (query) => {
+    BooksAPI.search(query)
+    .then(output => {
+      this.setState({SearchBooks:output})
+      console.log(query)
+      // console.log(this.state.SearchBooks)
+
+    })
+    .catch(output => {
+      this.setState({SearchBooks:[]})
+      // console.log(output)
+    })
+  }
+
+onSearch2 = (query) => {
+        // console.log(query,query.length)
+
+        if(query.length == 0)
+        {
+          this.setState({SearchBooks:[]})
+        }
+        else {
+
+       BooksAPI.search(query)
+    .then(output => {
+      this.setState({SearchBooks:output})
+      // console.log(this.state.SearchBooks)
+
+    })
+    .catch(output => {
+      this.setState({SearchBooks:[]})
+      // console.log(output)
+    }) 
+        }
+
+
+  }
 
   render() {
     return (
@@ -51,7 +90,11 @@ class BooksApp extends React.Component {
             />        
           )}/>  
         <Route path="/search"  render={() => (
-            <SearchPage/>
+            <SearchPage
+            searchBooks={this.state.SearchBooks}
+            onSearch={this.onSearch}
+            onSearch2={this.onSearch2} 
+            />
           )}/> 
       </div>
     )
