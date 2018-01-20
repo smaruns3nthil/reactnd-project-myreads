@@ -71,7 +71,36 @@ onSearch2 = (query) => {
        BooksAPI.search(query)
     .then((SearchBooks) => {
     	// console.log(SearchBooks,'test')
-      this.setState({SearchBooks: SearchBooks},
+
+
+      const newSearchBooks = SearchBooks.map( book => {
+        this.state.Books.forEach(book2 => { 
+          if(book2.id == book.id)
+          {
+            book.shelf=book2.shelf
+          }
+          else
+          {
+            book.shelf='none'
+          }
+
+        })
+        return book
+      })
+
+
+
+
+
+
+
+
+
+
+
+
+
+      this.setState({SearchBooks: newSearchBooks},
         // ()=>{console.log(this.state.SearchBooks,'test2')}
         )
       // console.log(this.state.SearchBooks,'hello')
@@ -112,6 +141,7 @@ onSearch2 = (query) => {
         <Route path="/search"  render={() => (
             <SearchPage
             searchBooks={this.state.SearchBooks}
+            onValueChange={this.onValueChange}
             // onSearch={this.onSearch}
             onSearch2={this.onSearch2} 
             onCli2={this.onCli2}
