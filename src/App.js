@@ -60,15 +60,15 @@ onSearch2 = (query) => {
         this.state.Books.forEach(book2 => { 
           if(book2.id == book.id)
           {
-            console.log('before')
+            // console.log('before')
             book.shelf=book2.shelf
-            console.log('after',book.shelf)
+            // console.log('after',book.shelf)
           }
         })
         if(!book.shelf)
         {
           // console.log(book.title)
-          book.shelf='none'
+          book.shelf='non'
         }
 
         return book

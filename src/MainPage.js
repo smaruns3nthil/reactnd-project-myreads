@@ -1,9 +1,14 @@
 import  React, { Component } from 'react'
 import  { Link } from 'react-router-dom'
 import ListBooks from './ListBooks'
+import PropTypes from 'prop-types'
 
 
 class MainPage extends Component{
+  static propTypes = {
+    books: PropTypes.array.isRequired,
+    onValueChange:PropTypes.func.isRequired
+  }
 
   // remove = (book,e) => {
   //   console.log(e.target.value)

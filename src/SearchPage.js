@@ -1,13 +1,20 @@
 import  React, { Component } from 'react'
 import  { Link } from 'react-router-dom'
 import ListBooks from './ListBooks'
+import PropTypes from 'prop-types'
 
 
 class SearchPage extends Component{
+	static propTypes = {
+    searchBooks: PropTypes.array.isRequired,
+    onValueChange:PropTypes.func.isRequired,
+    onSearch2: PropTypes.func.isRequired,
+    onCli2:PropTypes.func.isRequired
+  	}
 
 	state = {
     query: ''
-  }
+    }
 
   	componentDidMount(){
   		this.props.onCli2()
@@ -17,16 +24,8 @@ class SearchPage extends Component{
     this.setState({ query: query.trim() })
     // console.log(this.state.query.length, query)
 		this.props.onSearch2(query)
+ 	}  
 	
-    
-    
-  	}  
-
-
-  	
-  		
-  	
-
 	render(){
 		 const  query  = this.state.query
 
@@ -45,7 +44,7 @@ class SearchPage extends Component{
               	className="close-search" 
               	// onClick={() => this.props.onCli2() }
               	>Close</Link>
-              <div className="search-books-input-wrapper">
+                <div className="search-books-input-wrapper">
                 <input 
                 type="text" 
                 placeholder="Search by title or author" 
@@ -56,37 +55,10 @@ class SearchPage extends Component{
 
             </div>
             <div className="search-books-results">
-            
-
-
-
-
-<ol className="books-grid">
-				{this.props.searchBooks.map((book) => (
-	                      <li key={book.id}>
-	                        <div className="book">
-	                          <div className="book-top">
-	                            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})` }}></div>
-	                            <div className="book-shelf-changer">
-	                              <select value={book.shelf} onChange={(e) => this.props.onValueChange(book,e)} >
-	                                <option value="none" disabled>Move to...</option>
-	                                <option value="currentlyReading">Currently Reading</option>
-	                                <option value="wantToRead">Want to Read</option>
-	                                <option value="read">Read</option>
-	                                <option value="none">None</option>
-	                              </select>
-	                            </div>
-	                          </div>
-	                          <div className="book-title">{book.title}</div>
-	                          <div className="book-authors">{book.authors}
-	                          </div>
-	                        </div>
-	                      </li>
-					))}
-	                    </ol>
-
-            	
-
+            <ListBooks
+            books={this.props.searchBooks}
+            onValueChange={(book,e) => this.props.onValueChange(book,e)}
+            />       	
             </div>
           </div>
 
