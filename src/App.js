@@ -40,23 +40,6 @@ class BooksApp extends React.Component {
 
   }
 
-  // onSearch = (query) => {
-  // 	let q='bio'
-
-  //   BooksAPI.search(q)
-  //   .then(output => {
-  //     this.setState({SearchBooks:output})
-  //     console.log(query)
-  //     // console.log(this.state.SearchBooks)
-
-  //   })
-  //   .catch(output => {
-  //     this.setState({SearchBooks:[]})
-  //     console.log('no Output')
-  //     // console.log(output)
-  //   })
-  // }
-
 onSearch2 = (query) => {
         // console.log(query,query.length)
         
@@ -77,29 +60,20 @@ onSearch2 = (query) => {
         this.state.Books.forEach(book2 => { 
           if(book2.id == book.id)
           {
+            console.log('before')
             book.shelf=book2.shelf
+            console.log('after',book.shelf)
           }
-          else
-          {
-            book.shelf='none'
-          }
-
         })
+        if(!book.shelf)
+        {
+          // console.log(book.title)
+          book.shelf='none'
+        }
+
         return book
+
       })
-
-
-
-
-
-
-
-
-
-
-
-
-
       this.setState({SearchBooks: newSearchBooks},
         // ()=>{console.log(this.state.SearchBooks,'test2')}
         )
@@ -142,7 +116,6 @@ onSearch2 = (query) => {
             <SearchPage
             searchBooks={this.state.SearchBooks}
             onValueChange={this.onValueChange}
-            // onSearch={this.onSearch}
             onSearch2={this.onSearch2} 
             onCli2={this.onCli2}
 
