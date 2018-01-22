@@ -3,23 +3,18 @@ import  { Link } from 'react-router-dom'
 import ListBooks from './ListBooks'
 import PropTypes from 'prop-types'
 
-
 class MainPage extends Component{
   static propTypes = {
     books: PropTypes.array.isRequired,
     onValueChange:PropTypes.func.isRequired
   }
 
-  // remove = (book,e) => {
-  //   console.log(e.target.value)
-  // }
-
-
 	render(){
-    const { books } = this.props
-    const currentlyReading = books.filter(book =>  book.shelf == "currentlyReading" ) 
-    const wantToRead = books.filter(book =>  book.shelf == "wantToRead" ) 
-    const read = books.filter(book =>  book.shelf == "read" ) 
+
+    const { books, onValueChange } = this.props
+    const currentlyReading = books.filter(book =>  book.shelf == "currentlyReading" )
+    const wantToRead = books.filter(book =>  book.shelf == "wantToRead" )
+    const read = books.filter(book =>  book.shelf == "read" )
 
 
 		return(
@@ -34,41 +29,39 @@ class MainPage extends Component{
                   <h2 className="bookshelf-title">Currently Reading</h2>
                   <div className="bookshelf-books">
                     <ListBooks
-                    books={currentlyReading}
-                    onValueChange={(book,e) => this.props.onValueChange(book,e)}
-                    />
+                      books={currentlyReading}
+                      onValueChange={(book,e) => onValueChange(book,e)}
+                      />
                   </div>
                 </div>
                 <div className="bookshelf">
                   <h2 className="bookshelf-title">Want to Read</h2>
                   <div className="bookshelf-books">
                     <ListBooks
-                    books={wantToRead}
-                    onValueChange={(book,e) => this.props.onValueChange(book,e)}
-                    />
+                      books={wantToRead}
+                      onValueChange={(book,e) => onValueChange(book,e)}
+                      />
                   </div>
                 </div>
                 <div className="bookshelf">
                   <h2 className="bookshelf-title">Read</h2>
                   <div className="bookshelf-books">
                     <ListBooks
-                    books={read}
-                    onValueChange={(book,e) => this.props.onValueChange(book,e)}
-                    />
+                      books={read}
+                      onValueChange={(book,e) => onValueChange(book,e)}
+                      />
                   </div>
                 </div>
               </div>
             </div>
             <div className="open-search">
-              <Link 
+              <Link
                 to ="/search"
-                //onClick={() => this.props.onCli()}
-              >Add a book</Link>
+                >Add a book</Link>
             </div>
           </div>
-
-		)	
+		)
 	}
-}          
+}
 
 export default MainPage
