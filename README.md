@@ -5,6 +5,7 @@ The basic requirements for the project are node.js ,npm , terminal. The project 
 
 To get the application running :
 
+* clone or download the project from git hub
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
 
