@@ -50,7 +50,7 @@ class BooksApp extends React.Component {
           })
           if(!book.shelf)
           {
-          book.shelf='non'
+          book.shelf='none'
           }
           return book
         })
