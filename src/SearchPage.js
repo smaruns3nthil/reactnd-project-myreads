@@ -8,8 +8,8 @@ class SearchPage extends Component{
 	static propTypes = {
 	    searchBooks: PropTypes.array.isRequired,
 	    onValueChange:PropTypes.func.isRequired,
-	    onSearch2: PropTypes.func.isRequired,
-	    onCli2:PropTypes.func.isRequired
+	    onSearch: PropTypes.func.isRequired,
+	    pageReset:PropTypes.func.isRequired
   	}
 
 	state = {
